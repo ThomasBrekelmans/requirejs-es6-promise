@@ -34,7 +34,7 @@ define(function () {
 		// load is being called by the browser
 		parentRequire([name], function (loadedModule) {
 			// if it is not a Promise, continue normally
-			if (!loadedModule.then) {
+			if (!loadedModule || !loadedModule.then) {
 				onLoad(loadedModule);
 				return;
 			}
