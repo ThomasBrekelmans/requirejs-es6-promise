@@ -1,0 +1,11 @@
+{
+  "name": "requirejs-es6-promise",
+  "version": "0.1.0",
+  "description": "A RequireJS loader plugin which allows modules to delay their availability by exporting an ES6 Promise.",
+  "main": "es6-promise.js",
+  "private": false,
+  "ignore": [],
+  "dependencies": {
+    "requirejs": "~2.1.11"
+  }
+}
