@@ -2,8 +2,6 @@
 A RequireJS loader plugin which allows modules to delay their availability by exporting an ES6 Promise.
 
 ## TODO
-- Fix rejected promises call onLoad.error but RequireJS does not (re)throw the given error so the module depending on
-a promise prefixed resource/module is never instantiated.
 - Improve this file's Markdown.
 - Improve this file's usage section.
 - Publish this package on bower.

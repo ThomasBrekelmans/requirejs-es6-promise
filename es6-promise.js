@@ -3,7 +3,7 @@
 define(function () {
 	'use strict';
 
-	var VERSION = '0.8.0';
+	var VERSION = '0.9.0';
 
 	/**
 	 * The implementation of the RequireJS plugin load() method. This method is called automatically by RequireJS
@@ -33,10 +33,20 @@ define(function () {
 			// When it is resolved, call onLoad with the resolved data. When it is rejected, call onLoad.error with the
 			// given reason; the value passed to the reject method of the returned Promise.
 			// (@see MDN Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-			// TODO: onLoad.error is called when the Promise is rejected, but RequireJS doesn't rethrow the error which
-			//   causes the module which depends on a resource/module using this plugin is never instantiated and
-			//   nothing is shown to the developer.
-			loadedModule.then(onLoad, onLoad.error);
+			loadedModule.then(onLoad, function onReject (error) {
+				// Manually output this error because RequireJS doesn't show anything when calling onLoad.error and the
+				// developer experiences a "hang" without any feedback.
+				var errorMessage = 'Exported Promise from module "' + name + '" was rejected:';
+				if (console) {
+					if (console.error) {
+						console.error(errorMessage, error);
+					}
+					else if (console.log) {
+						console.log(errorMessage, error);
+					}
+				}
+				onLoad.error(error);
+			});
 		});
 	}
 
