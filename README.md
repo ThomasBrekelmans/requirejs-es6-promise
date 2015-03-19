@@ -2,8 +2,6 @@
 A RequireJS loader plugin which allows modules to delay their availability by exporting an ES6 Promise.
 
 ## TODO
-- Improve this file's Markdown.
-- Improve this file's usage section.
 - Publish this package on bower.
 
 ## Usage
@@ -51,6 +49,7 @@ define(function () {
 ```
 
 - Define another module which depends on the first module using this plugin
+(assume "promise" is the name of the RequireJS path to this plugin)
 ```js
 define([
 	'promise!./async-dependency'
